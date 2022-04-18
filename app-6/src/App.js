@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import ToDo from './components/ToDo';
 import './App.css';
 
 function App() {
+  const [task, setTask] = useState('');
+  const [taskArray, setTaskArray] = useState([]);
+
+  function getInput(event){
+    setTask(event.target.value);
+    // console.log(task);
+  }
+
+  function submitHandler(event){
+    event.preventDefault();
+    console.log(task);
+    setTaskArray([...taskArray, task]);
+    console.log(taskArray);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My to-do list:</h1>
+      <input onChange={getInput}></input>
+      <button onClick={submitHandler}>Add</button>
+      <ToDo list={taskArray}/>
+      
     </div>
   );
 }
