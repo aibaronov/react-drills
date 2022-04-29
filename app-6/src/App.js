@@ -15,6 +15,7 @@ function App() {
     event.preventDefault();
     console.log(task);
     setTaskArray([...taskArray, task]);
+    setTask('');
     console.log(taskArray);
   }
   return (
